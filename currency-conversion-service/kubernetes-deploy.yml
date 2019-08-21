@@ -1,0 +1,342 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: currency-conversion-service
+spec:
+  selector:
+    matchLabels:
+      app: currency-conversion-service
+  replicas: 1 # tells deployment to run 1 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      labels:
+        app: currency-conversion-service
+    spec:
+      containers:
+      - name: currency-conversion-service
+        imagePullPolicy: IfNotPresent
+        image: gunjan/currency-conversion-service
+        ports:
+        - containerPort: 8100
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: currency-conversion-service-all-service
+spec:
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the frontend service.
+  #type: NodePort
+  ports:
+  - port: 8100
+    protocol: TCP
+    targetPort: 8100
+    #nodePort: 30001
+  selector:
+    app: currency-conversion-service
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+---
+
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: currency-exchange-service
+spec:
+  selector:
+    matchLabels:
+      app: currency-exchange-service
+  replicas: 1 # tells deployment to run 1 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      labels:
+        app: currency-exchange-service
+    spec:
+      containers:
+      - name: currency-exchange-service
+        imagePullPolicy: IfNotPresent
+        image: gunjan/currency-exchange-service
+        ports:
+        - containerPort: 8000
+
+
+
+
+
+
+   
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: currency-exchange-service-all-service
+spec:
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the frontend service.
+  #type: NodePort
+  ports:
+  - port: 8000
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    app: currency-exchange-service
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+---
+
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: limits-service
+spec:
+  selector:
+    matchLabels:
+      app: limits-service
+  replicas: 1 # tells deployment to run 1 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      labels:
+        app: limits-service
+    spec:
+      containers:
+      - name: limits-service
+        imagePullPolicy: IfNotPresent
+        image: gunjan/limits-service
+        ports:
+        - containerPort: 8080
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: limits-service-all-service
+spec:
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the frontend service.
+  #type: NodePort
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: limits-service
+    
+    
+    
+    
+    
+    
+    
+    
+    
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: netflix-eureka-naming-server
+spec:
+  selector:
+    matchLabels:
+      app: netflix-eureka-naming-server
+  replicas: 1 # tells deployment to run 1 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      labels:
+        app: netflix-eureka-naming-server
+    spec:
+      containers:
+      - name: netflix-eureka-naming-server
+        imagePullPolicy: IfNotPresent
+        image: gunjan/netflix-eureka-naming-server
+        ports:
+        - containerPort: 8761
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: netflix-eureka-naming-server-all-service
+spec:
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the frontend service.
+  #type: NodePort
+  ports:
+  - port: 8761
+    protocol: TCP
+    targetPort: 8761
+    #nodePort: 30000
+  selector:
+    app: netflix-eureka-naming-server
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: netflix-zuul-api-gateway-server
+spec:
+  selector:
+    matchLabels:
+      app: netflix-zuul-api-gateway-server
+  replicas: 1 # tells deployment to run 1 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      labels:
+        app: netflix-zuul-api-gateway-server
+    spec:
+      containers:
+      - name: netflix-zuul-api-gateway-server
+        imagePullPolicy: IfNotPresent
+        image: gunjan/netflix-zuul-api-gateway-server
+        ports:
+        - containerPort: 8765
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: netflix-zuul-api-gateway-server-all-service
+spec:
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the frontend service.
+  type: NodePort
+  ports:
+  - port: 8765
+    protocol: TCP
+    targetPort: 8765
+    nodePort: 30002
+  selector:
+    app: netflix-zuul-api-gateway-server
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: spring-cloud-config-server
+spec:
+  selector:
+    matchLabels:
+      app: spring-cloud-config-server
+  replicas: 1 # tells deployment to run 1 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      labels:
+        app: spring-cloud-config-server
+    spec:
+      containers:
+      - name: spring-cloud-config-server
+        imagePullPolicy: IfNotPresent
+        image: gunjan/spring-cloud-config-server
+        ports:
+        - containerPort: 8888
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-cloud-config-server-all-service
+spec:
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the frontend service.
+  #type: NodePort
+  ports:
+  - port: 8888
+    protocol: TCP
+    targetPort: 8888
+  selector:
+    app: spring-cloud-config-server
+
+
+

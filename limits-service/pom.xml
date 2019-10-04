@@ -82,7 +82,7 @@
 				<artifactId>docker-maven-plugin</artifactId>
 				<!--<version>0.15.3</version>-->
 				<configuration>
-					<dockerHost>http://127.0.0.1:2375</dockerHost>
+					<dockerHost>http://10.71.69.236:5000</dockerHost>
 					<verbose>true</verbose>
 					<images>
 						<image>
